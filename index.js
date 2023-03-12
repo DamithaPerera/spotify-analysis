@@ -1,8 +1,14 @@
 const express = require('express');
+const analysis = require('./module/analysis/analysis.router');
+
+
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
+app.use(express.json());
+
+app.get('/analysis', analysis)
+app.get('/health', (req, res) => {
     res.send('Hello World!');
 });
 
