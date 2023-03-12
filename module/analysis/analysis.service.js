@@ -11,7 +11,7 @@ exports.analysisService = async () => {
     const token = await spotifyApi.clientCredentialsGrant();
 
     const query = 'Summer, phonk, car music, workout, running, morning music, electronic music, deep house';
-    const limit = 5;
+    const limit = 50;
 
     let playlists = [];
     let total = limit;
