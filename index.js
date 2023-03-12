@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get('/analysis', analysis)
+app.use('/analysis', analysis)
 app.get('/health', (req, res) => {
     res.send('Hello World!');
 });
