@@ -8,7 +8,7 @@ const port = 3000;
 
 app.use(express.json());
 
-getDBConnectionString();
+getDBConnectionString()
 
 app.use('/analysis', analysis)
 app.get('/health', (req, res) => {
