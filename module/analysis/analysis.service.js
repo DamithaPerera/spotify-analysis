@@ -52,3 +52,9 @@ cron.schedule('0 0 * * *', async () => {
     const playlists = await analysisService();
     console.log('Done!');
 });
+
+
+
+exports.analysisSearchService = async (name, description, owner) => {
+    return await analysisRepo(name, description, owner);
+}
