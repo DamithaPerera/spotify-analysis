@@ -1,6 +1,6 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const axios = require("axios");
-const {analysisRepo} = require("./analysis.repo");
+const {analysisRepo, analysisCreateRepo} = require("./analysis.repo");
 const cron = require('node-cron');
 
 
@@ -12,7 +12,7 @@ const spotifyApi = new SpotifyWebApi({
 analysisService = async () => {
     const token = await spotifyApi.clientCredentialsGrant();
 
-    const query = 'Summer,phonk,car music, workout, running, morning music, electronic music, deep house';
+    const query = 'summer,phonk,car music,workout,running,morning music,electronic music,deep house';
     const limit = 50;
 
     let playlists = [];
@@ -37,11 +37,11 @@ analysisService = async () => {
 
         playlists = playlists.concat(response.data.playlists.items);
         total = response.data.playlists.total;
-        console.log('ddd', total);
-        await analysisRepo(playlists);
+        console.log('ddd==>', total);
+        await analysisCreateRepo(playlists);
     }
 
-    console.log('Retrieved', playlists.length, 'playlists.');
+    // console.log('Retrieved', playlists.length, 'playlists.');
     return playlists;
 
 }

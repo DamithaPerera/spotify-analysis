@@ -1,7 +1,7 @@
 const playListModel = require('../../models/playlist')
 
 
-exports.analysisRepo = async (playlists) => {
+exports.analysisCreateRepo = async (playlists) => {
     return playListModel.create(playlists)
 }
 
