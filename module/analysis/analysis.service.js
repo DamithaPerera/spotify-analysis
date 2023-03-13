@@ -1,6 +1,7 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const axios = require("axios");
 const {analysisRepo} = require("./analysis.repo");
+const cron = require('node-cron');
 
 
 const spotifyApi = new SpotifyWebApi({
@@ -8,7 +9,7 @@ const spotifyApi = new SpotifyWebApi({
     clientSecret: '4141ecf0216b4370aeb66a613d1436c5',
 });
 
-exports.analysisService = async () => {
+analysisService = async () => {
     const token = await spotifyApi.clientCredentialsGrant();
 
     const query = 'Summer,phonk,car music, workout, running, morning music, electronic music, deep house';
@@ -44,3 +45,10 @@ exports.analysisService = async () => {
     return playlists;
 
 }
+
+// Schedule the function to run once per day at 12:00 AM
+cron.schedule('0 0 * * *', async () => {
+    console.log('Fetching playlists from Spotify API...');
+    const playlists = await analysisService();
+    console.log('Done!');
+});
